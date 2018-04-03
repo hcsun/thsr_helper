@@ -1,0 +1,9 @@
+{
+    "start_station": "0",
+    "destination_station": "0",
+    "to_date":  "2020/04/21",
+    "train_id":  "666",
+    "id_number":  "A123456789",
+    "phone_number":  "0123456789",
+    "mail":  "someone@somewhere.com"
+}
