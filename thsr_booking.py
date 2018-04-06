@@ -4,7 +4,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.alert import Alert
+
 import json
+
+from datetime import datetime
 
 class THSRBooker:
     link = 'https://irs.thsrc.com.tw/IMINT?locale=tw'
@@ -42,13 +45,13 @@ class THSRBooker:
         driver.get(self.link)
 
         #phase 1
-        try:
-            element = WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.XPATH, self.select_start_station_xpath))
-            )
-        except:
-            print('phase 1 start fail')
-            driver.quit()
+        while True:
+            input_to_date = driver.find_element_by_xpath(self.input_to_date_xpath)
+            date_limit = input_to_date.get_attribute("limit")
+            if (datetime.strptime(date_limit, '%Y/%m/%d') >= datetime.strptime(self.user_info["to_date"], '%Y/%m/%d')):
+                break
+            driver.refresh()
+
 
         select_start_station = Select(driver.find_element_by_xpath(self.select_start_station_xpath))
         select_destionation_station = Select(driver.find_element_by_xpath(self.select_destination_station_xpath))
@@ -108,4 +111,3 @@ if __name__ == '__main__':
 
     booking = THSRBooker(data)
     booking.Start()
-    input()
