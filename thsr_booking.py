@@ -15,7 +15,7 @@ class THSRBooker:
     select_start_station_xpath = '//*[@id="content"]/tbody/tr[1]/td[2]/span/select'
     select_destination_station_xpath = '//*[@id="content"]/tbody/tr[1]/td[2]/select'
 
-    radio_booking_method_xpath = '//input[@value="radio29"]'
+    radio_booking_method_xpath = '//*[@id="bookingMethod_1"]'
 
     input_to_date_xpath = '//*[@id="toTimeInputField"]'
 
@@ -103,7 +103,7 @@ class THSRBooker:
         button_submit.click()
 
         button_submit = driver.find_element_by_xpath(self.button_submit_again_xpath)
-        #button_submit.click()
+        button_submit.click()
 
 
 if __name__ == '__main__':
